@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Mail, School, CheckCircle, AlertCircle, User } from 'lucide-react';
+import { ArrowRight, Mail, School, CheckCircle, AlertCircle, User, Zap, Gift, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const CTA = () => {
@@ -231,188 +231,215 @@ const CTA = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          <div className="glass-card p-6 md:p-12 rounded-2xl shadow-lg backdrop-blur-sm bg-white/80 border border-white/20">
-            <div
-              className={cn(
-                "text-center mb-10 md:mb-12 transition-all duration-700",
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              )}
-            >
-              <span className="inline-block py-1 px-4 mb-4 text-sm font-semibold bg-primary/10 text-primary rounded-full">
-                Lista de espera exclusiva
-              </span>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                ¿Listo para transformar tu vida universitaria?
-              </h2>
-              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Sé de los primeros en acceder a Cluber cuando lancemos en tu universidad.
-                Regístrate ahora y obtén beneficios exclusivos desde el primer día.
-              </p>
-            </div>
+        <div className="max-w-6xl mx-auto">
+          <div
+            className={cn(
+              "text-center mb-10 md:mb-14 transition-all duration-700",
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            )}
+          >
+            <span className="inline-block py-1 px-4 mb-4 text-sm font-semibold bg-primary/10 text-primary rounded-full">
+              Lista de espera exclusiva
+            </span>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              ¿Listo para transformar tu vida universitaria?
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Sé de los primeros en acceder a Cluber cuando lancemos en tu universidad.
+              Regístrate ahora y obtén beneficios exclusivos desde el primer día.
+            </p>
+          </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className={cn(
-                "max-w-xl mx-auto transition-all duration-1000 transform",
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-              )}
-            >
-              <div className="space-y-5 md:space-y-6">
-                {/* Nuevo campo para nombre y apellido */}
-                <div className="relative">
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Nombre y apellido
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                      <User size={18} />
-                    </div>
-                    <input
-                      type="text"
-                      id="fullName"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      placeholder="Ingresa tu nombre y apellido"
-                      className={cn(
-                        "w-full px-4 py-3 pl-10 rounded-xl border focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm hover:shadow-md",
-                        !isNameValid ? "border-red-500 bg-red-50" : "border-gray-200"
+          <div className="glass-card rounded-2xl shadow-xl backdrop-blur-sm bg-white/80 border border-white/20 overflow-hidden">
+            <div className="md:flex">
+              {/* Columna izquierda: Formulario */}
+              <div className="md:w-3/5 p-6 md:p-10 lg:p-12">
+                <form
+                  onSubmit={handleSubmit}
+                  className={cn(
+                    "max-w-xl mx-auto transition-all duration-1000 transform",
+                    isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+                  )}
+                >
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Únete a nuestra lista de espera</h3>
+                  
+                  <div className="space-y-5">
+                    {/* Nombre y apellido */}
+                    <div className="relative">
+                      <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                        Nombre y apellido
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                          <User size={18} />
+                        </div>
+                        <input
+                          type="text"
+                          id="fullName"
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          placeholder="Ingresa tu nombre y apellido"
+                          className={cn(
+                            "w-full px-4 py-3 pl-10 rounded-xl border focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm hover:shadow-md",
+                            !isNameValid ? "border-red-500 bg-red-50" : "border-gray-200"
+                          )}
+                          required
+                        />
+                      </div>
+                      {!isNameValid && (
+                        <p className="mt-2 text-sm text-red-500 flex items-center">
+                          <AlertCircle size={14} className="mr-1" />
+                          {nameError}
+                        </p>
                       )}
-                      required
-                    />
-                  </div>
-                  {!isNameValid && (
-                    <p className="mt-2 text-sm text-red-500 flex items-center">
-                      <AlertCircle size={14} className="mr-1" />
-                      {nameError}
-                    </p>
-                  )}
-                </div>
-
-                <div className="relative">
-                  <label htmlFor="university" className="block text-sm font-medium text-gray-700 mb-2">
-                    Universidad
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                      <School size={18} />
                     </div>
-                    <select
-                      id="university"
-                      value={university}
-                      onChange={(e) => setUniversity(e.target.value)}
-                      className="w-full px-4 py-3 pl-10 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm hover:shadow-md appearance-none bg-white"
-                      required
-                    >
-                      <option value="">Selecciona tu universidad</option>
-                      <option value="UPC">Universidad Peruana de Ciencias Aplicadas</option>
-                      <option value="PUCP">Pontificia Universidad Católica del Perú</option>
-                    </select>
-                  </div>
-                </div>
 
-                <div className="relative">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Correo electrónico institucional
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                      <Mail size={18} />
+                    {/* Universidad */}
+                    <div className="relative">
+                      <label htmlFor="university" className="block text-sm font-medium text-gray-700 mb-2">
+                        Universidad
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                          <School size={18} />
+                        </div>
+                        <select
+                          id="university"
+                          value={university}
+                          onChange={(e) => setUniversity(e.target.value)}
+                          className="w-full px-4 py-3 pl-10 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm hover:shadow-md appearance-none bg-white"
+                          required
+                        >
+                          <option value="">Selecciona tu universidad</option>
+                          <option value="UPC">Universidad Peruana de Ciencias Aplicadas</option>
+                          <option value="PUCP">Pontificia Universidad Católica del Perú</option>
+                        </select>
+                      </div>
                     </div>
-                    <input
-                      type="email"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder={university === 'UPC' ? "U20XXXXXXX@upc.edu.pe" :
-                        university === 'PUCP' ? "A20XXXXXXX@pucp.edu.pe" :
-                          "Selecciona una universidad primero"}
-                      className={cn(
-                        "w-full px-4 py-3 pl-10 rounded-xl border focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm hover:shadow-md",
-                        !isEmailValid ? "border-red-500 bg-red-50" : "border-gray-200"
+
+                    {/* Correo electrónico */}
+                    <div className="relative">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Correo electrónico institucional
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                          <Mail size={18} />
+                        </div>
+                        <input
+                          type="email"
+                          id="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder={university === 'UPC' ? "U20XXXXXXX@upc.edu.pe" :
+                            university === 'PUCP' ? "A20XXXXXXX@pucp.edu.pe" :
+                              "Selecciona una universidad primero"}
+                          className={cn(
+                            "w-full px-4 py-3 pl-10 rounded-xl border focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-sm hover:shadow-md",
+                            !isEmailValid ? "border-red-500 bg-red-50" : "border-gray-200"
+                          )}
+                          required
+                        />
+                      </div>
+                      {(!isEmailValid || isEmailExists) && (
+                        <p className="mt-2 text-sm text-red-500 flex items-center">
+                          <AlertCircle size={14} className="mr-1" />
+                          {emailError}
+                        </p>
                       )}
-                      required
-                    />
-                  </div>
-                  {(!isEmailValid || isEmailExists) && (
-                    <p className="mt-2 text-sm text-red-500 flex items-center">
-                      <AlertCircle size={14} className="mr-1" />
-                      {emailError}
-                    </p>
-                  )}
-                </div>
-
-                <div className="pt-3 md:pt-4">
-                  <button
-                    type="submit"
-                    className="w-full btn-primary flex justify-center items-center py-3.5 rounded-xl text-lg font-medium transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
-                    disabled={isVerificationSent}
-                  >
-                    {isVerificationSent ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Verificando...
-                      </>
-                    ) : (
-                      <>
-                        <span>Unirse a la lista de espera</span>
-                        <ArrowRight className="ml-2" size={20} />
-                      </>
-                    )}
-                  </button>
-
-                  {isSubmitted && !isEmailExists && (
-                    <div className="mt-4 p-3 bg-green-50 border border-green-100 rounded-lg text-green-700 flex items-center justify-center animate-fade-in">
-                      <CheckCircle size={18} className="mr-2" />
-                      <span>¡Gracias por tu interés! Te enviaremos información pronto.</span>
                     </div>
-                  )}
 
-                  {/* Elimina este bloque para que no aparezca el mensaje duplicado */}
-                  {/*
-  {isEmailExists && (
-    <div className="mt-4 p-3 bg-red-50 border border-red-100 rounded-lg text-red-700 flex items-center justify-center animate-fade-in">
-      <AlertCircle size={18} className="mr-2" />
-      <span>Este correo ya está registrado, te pedimos que te registres con otro o nos contactes!</span>
-    </div>
-  )}
-  */}
-                </div>
-              </div>
-            </form>
+                    {/* Botón de envío */}
+                    <div className="pt-3">
+                      <button
+                        type="submit"
+                        className="w-full btn-primary flex justify-center items-center py-3.5 rounded-xl text-lg font-medium transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                        disabled={isVerificationSent}
+                      >
+                        {isVerificationSent ? (
+                          <>
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Verificando...
+                          </>
+                        ) : (
+                          <>
+                            <span>Unirse a la lista de espera</span>
+                            <ArrowRight className="ml-2" size={20} />
+                          </>
+                        )}
+                      </button>
 
-            <div className={cn(
-              "mt-10 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 transition-all duration-1000 delay-300",
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-            )}>
-              <div className="flex items-center space-x-3 bg-white p-3 px-5 rounded-xl shadow-sm">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <p className="text-sm md:text-base text-gray-700 font-medium">Acceso prioritario</p>
-              </div>
-
-              <div className="flex items-center space-x-3 bg-white p-3 px-5 rounded-xl shadow-sm">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <p className="text-sm md:text-base text-gray-700 font-medium">Beneficios exclusivos</p>
+                      {isSubmitted && !isEmailExists && (
+                        <div className="mt-4 p-3 bg-green-50 border border-green-100 rounded-lg text-green-700 flex items-center justify-center transition-opacity duration-300 opacity-100">
+                          <CheckCircle size={18} className="mr-2" />
+                          <span>¡Gracias por tu interés! Te enviaremos información pronto.</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </form>
               </div>
 
-              <div className="flex items-center space-x-3 bg-white p-3 px-5 rounded-xl shadow-sm">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              {/* Columna derecha: Beneficios */}
+              <div className="md:w-2/5 bg-gradient-to-br from-primary/10 to-secondary/5 p-6 md:p-10 lg:p-12 relative">
+                {/* Elemento decorativo */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full transform translate-x-1/2 -translate-y-1/2 blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-secondary/10 rounded-full transform -translate-x-1/2 translate-y-1/2 blur-xl"></div>
+                
+                <div className={cn(
+                  "relative z-10 h-full flex flex-col transition-all duration-1000 delay-300",
+                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+                )}>
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Beneficios exclusivos</h3>
+                  
+                  <div className="space-y-6 flex-grow">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mr-4">
+                        <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                          <Zap size={24} />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-1">Acceso anticipado</h4>
+                        <p className="text-gray-600">Sé el primero en disfrutar de todas las funcionalidades exclusivas cuando lancemos la plataforma.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mr-4">
+                        <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                          <Gift size={24} />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-1">Beneficios exclusivos</h4>
+                        <p className="text-gray-600">Recompensas y promociones especiales solo para los miembros fundadores.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mr-4">
+                        <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                          <Check size={24} />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-1">100% gratuito</h4>
+                        <p className="text-gray-600">Accede a todas las funciones premium sin costo durante el lanzamiento.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-auto pt-6 border-t border-gray-200/50">
+                    <p className="text-sm text-gray-500 italic">
+                      "Estamos creando la mejor experiencia para tu vida universitaria. Únete ahora y sé parte de esta revolución."
+                    </p>
+                    <p className="text-sm font-semibold text-gray-700 mt-2">- Equipo Cluber</p>
+                  </div>
                 </div>
-                <p className="text-sm md:text-base text-gray-700 font-medium">100% gratuito</p>
               </div>
             </div>
           </div>
